@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+  <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="42e1528b-6795-430c-b7b2-19ff9f665bdc" >
+    <http:listener-connection host="0.0.0.0" port="8081" />
+  </http:listener-config>
+  <http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="68240a73-a7f7-4fee-b507-ed2af0448c89" >
+    <http:request-connection protocol="HTTPS" host="api.openai.com" />
+    <http:default-headers >
+      <http:default-header key="Authorization" value="Bearer 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" />
+    </http:default-headers>
+  </http:request-config>
+  <flow name="chatgpt-apiFlow" doc:id="afe22cb0-8b4b-4b0f-a2d6-1db32464dd81" >
+    <http:listener doc:name="Listener" doc:id="a3897c2b-6c05-4416-9f71-45e81dd416af" config-ref="HTTP_Listener_config" path="/chat"/>
+    <logger level="INFO" doc:name="Start Logger" doc:id="aec371b0-6c9e-4c9c-a01c-de274726523a" message="#[payload]"/>
+    <http:request method="POST" doc:name="ChatGPT Completion API Request" doc:id="bf428ed6-44bf-496f-92ab-5d2e38e836c1" config-ref="HTTP_Request_configuration" path="/v1/chat/completions"/>
+    <ee:transform doc:name="Transform Message" doc:id="df02ae08-8b02-4457-ab64-4a9b9c2aa2e6" >
+      <ee:message >
+        <ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload.choices[0].message.content]]></ee:set-payload>
+      </ee:message>
+    </ee:transform>
+    <logger level="INFO" doc:name="End Logger" doc:id="7a650298-d037-40fd-b37f-79030527766f" message="#[payload]"/>
+  </flow>
+</mule>
