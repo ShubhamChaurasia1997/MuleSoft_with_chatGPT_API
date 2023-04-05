@@ -52,6 +52,12 @@
             <version>1.2.1</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+        <dependency>
+            <groupId>com.mulesoft.connectors</groupId>
+            <artifactId>mule-x12-connector</artifactId>
+            <version>2.9.2</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
     </dependencies>
 
     <repositories>
