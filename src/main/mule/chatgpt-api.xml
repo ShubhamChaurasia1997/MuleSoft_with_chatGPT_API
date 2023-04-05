@@ -11,7 +11,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
   <http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="68240a73-a7f7-4fee-b507-ed2af0448c89" >
     <http:request-connection protocol="HTTPS" host="api.openai.com" />
     <http:default-headers >
-      <http:default-header key="Authorization" value="Bearer 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" />
+      <http:default-header key="Authorization" value="Bearer YOUR API KEY" />
     </http:default-headers>
   </http:request-config>
   <flow name="chatgpt-apiFlow" doc:id="afe22cb0-8b4b-4b0f-a2d6-1db32464dd81" >

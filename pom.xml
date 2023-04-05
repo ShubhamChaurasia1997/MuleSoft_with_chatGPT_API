@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
-    <name>chatgpt-api</name>
+    <name>chatgpt-api-1</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,18 +44,6 @@
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-sockets-connector</artifactId>
             <version>1.2.2</version>
-            <classifier>mule-plugin</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.mule.connectors</groupId>
-            <artifactId>mule-objectstore-connector</artifactId>
-            <version>1.2.1</version>
-            <classifier>mule-plugin</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.mulesoft.connectors</groupId>
-            <artifactId>mule-x12-connector</artifactId>
-            <version>2.9.2</version>
             <classifier>mule-plugin</classifier>
         </dependency>
     </dependencies>
